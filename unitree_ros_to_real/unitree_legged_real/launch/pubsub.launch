@@ -1,0 +1,4 @@
+<launch>
+  <node name="pub" pkg="teleop_twist_keyboard" type="teleop_twist_keyboard.py"/>
+  <node name="sub" pkg="unitree_legged_real" type="sub_test" output="screen"/>
+</launch>
