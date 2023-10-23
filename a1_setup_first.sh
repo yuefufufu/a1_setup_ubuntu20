@@ -35,10 +35,10 @@ echo 'export UNITREE_PLATFORM="amd64"' >> ~/.bashrc
 echo 'export LCM_PATH=/usr/local/lib/liblcm.so.1' >> ~/.bashrc
 
 sudo apt-get install -y ros-noetic-controller-interface ros-noetic-joint-state-controller ros-noetic-effort-controllers ros-noetic-joint-trajectory-controller
-sudo apt-get install ros-noetic-teleop-twist-keyboard
-sudo apt install ros-noetic-move-base-msgs
-sudo apt install liblcm-dev
+sudo apt-get install -y ros-noetic-teleop-twist-keyboard
 
+sudo apt install -y ros-noetic-move-base-msgs
+sudo apt install -y liblcm-dev
 sudo apt install -y net-tools
 sudo apt install -y ipmiutil
 
