@@ -1,19 +1,24 @@
 sudo su
-
+bash moa-ip.sh
 source /home/yue/catkin_ws/devel/setup.bash
 
 roslaunch unitree_legged_real realtest.launch rname:=a1 ctrl_level:=highlevel firmwork:=3_2
+roslaunch unitree_legged_real baran3.launch rname:=a1 ctrl_level:=lowlevel firmwork:=3_2
+
+[0.2以下、0.2以下、2.0付近]
 
 rosrun unitree_legged_real keyconfig.py cmd_vel:=/cmd_vel
 
 catkin build unitree_legged_real 
 
 roslaunch realsense2_camera demo_pointcloud.launch
+roslaunch velodyne_pointcloud VLP16_points.launch 
 
-sfsef
+rosrun topic_tools relay <input> <output>
+rosrun topic_tools relay /imu/data imu_raw
+rosrun topic_tools relay /velodyne_points points_raw
+rosrun imu_filter_madgwick imu_filter_node
 
-
-catkin build unitree_legged_real 
 
 SendHighROS.mode = 0;//1で姿勢の制御、2で走行に関する制御、34
 SendHighROS.roll  = 0;//左右に傾く(正で右側が下がる)
@@ -25,3 +30,36 @@ SendHighROS.mode = 0;//2で走行に関する制御
 SendHighROS.forwardSpeed = 0.0f;//前後進(正で前進)
 SendHighROS.sideSpeed = 0.0f;//左右にスライド移動(正で左に移動)
 SendHighROS.rotateSpeed = 0.0f;//左右に回転(正で左向きに回転)
+
+roslaunch rt_usb_9axisimu_driver cam.launch 
+roslaunch rt_usb_9axisimu_driver rt_usb_9axisimu_driver.launch 
+rosbag record /rosout_agg /rosout /usb_cam/image_raw /tf /imu0/imu/data /imu0/imu/data_raw /imu0/imu/mag /imu0/imu_pose /imu1/imu/data /imu1/imu/data_raw /imu1/imu/mag /imu1/imu_pose /force_sensor_vel /initialpose /move_base_simple/goal /clicked_point -O syouwa1
+
+rosbag record /rosout_agg /rosout /force_sensor_vel -O unchi
+rostopic echo -b unchi.bag -p /force_sensor_vel > unchi.csv
+
+sudo apt install ibus-mozc 
+ibus restart 
+gsettings set org.gnome.desktop.input-sources sources "[('xkb', 'jp'), ('ibus', 'mozc-jp')]"
+
+
+
+寝てるポーズ
+FR_0=-0.3,FR_1=1.0,FR_2=-2.7,
+
+肩を上げる限界
+FR_0=-0.8
+
+肩をうちにやる限界
+FR_0=0.8
+
+肩を前にやる限界
+FR_1=4.0
+
+その逆
+FR_1=-1
+
+ひじを開く限界
+FR_2=-0.92~-2.65
+
+-2.65
