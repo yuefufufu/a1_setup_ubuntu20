@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cd ~/a1_setup_ubuntu20.04
+cd ~/a1_setup_ubuntu20
 mv lcm ~/
 mv unitree_legged_sdk ~/
 
@@ -16,7 +16,7 @@ cd build
 cmake ../
 make
 
-cd ~/a1_setup_ubuntu20.04
+cd ~/a1_setup_ubuntu20
 mv unitree_ros ~/catkin_ws/src/
 mv unitree_ros_to_real ~/catkin_ws/src/
 mv unitree_guide ~/catkin_ws/src/
