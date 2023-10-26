@@ -63,3 +63,11 @@ FR_1=-1
 FR_2=-0.92~-2.65
 
 -2.65
+
+<launch>
+    <arg name="freq" default="0.5"/>
+    <arg name="bagfile_name" default="my_bagfile"/>
+    <node pkg="unitree_guide" type="junior_ctrl" name="junior_ctrl" output="screen"/>
+    <param name="freqq" value="$(arg freq)"/>
+    <node pkg="rosbag" type="record" name="record" args="-a -O /home/yue/catkin_ws/rosbag/$(arg bagfile_name)_$(arg freq)" />
+</launch>
