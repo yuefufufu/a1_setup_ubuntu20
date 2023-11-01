@@ -11,7 +11,7 @@ sudo apt install -y ros-noetic-desktop-full
 echo "source /opt/ros/noetic/setup.bash" >> ~/.bashrc
 source /opt/ros/noetic/setup.bash
 sudo apt install -y python3-rosdep python3-rosinstall python3-rosinstall-generator python3-wstool build-essential
-sudo apt install -y python3-roslaunch python3-osrf-pycommon python3-catkin-tools
+sudo apt install -y python3-roslaunch python3-osrf-pycommon python3-catkin-tools python3-pip
 sudo apt install -y vim
 
 sudo apt install -y mlocate
